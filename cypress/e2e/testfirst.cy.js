@@ -1,4 +1,4 @@
-escribe("Our First test suite", () => {
+describe("Our First test suite", () => {
   it("visit url", () => {
     cy.visit("/");
     cy.contains(/forms/i).click(); // case insensitivity
@@ -13,5 +13,10 @@ escribe("Our First test suite", () => {
     cy.visit("/");
     cy.contains(/forms/i).click(); // case insensitivity
     cy.contains("Form Layouts").click();
+
+    cy.get('[data-cy="signin1"]');
+    cy.contains('[status="warning"]', "Sign in");
+
+    cy.contains("nb-card", "Horizontal form").find('[type="email"]');
   });
 });

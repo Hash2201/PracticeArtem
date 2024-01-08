@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("Our First test suite", () => {
   it("visit url", () => {
     cy.visit("/");
@@ -9,7 +11,7 @@ describe("Our First test suite", () => {
     cy.get('input[id="inputEmail1"]');
   });
 
-  it.only("Second test", () => {
+  it("Second test", () => {
     cy.visit("/");
     cy.contains(/forms/i).click(); // case insensitivity
     cy.contains("Form Layouts").click();
@@ -18,5 +20,14 @@ describe("Our First test suite", () => {
     cy.contains('[status="warning"]', "Sign in");
 
     cy.contains("nb-card", "Horizontal form").find('[type="email"]');
+  });
+
+  it.only("Second test", () => {
+    cy.visit("/");
+    cy.contains(/forms/i).click(); // case insensitivity
+    cy.contains("Form Layouts").click();
+
+    cy.contains("nb-card", "using the grid").find('[for="inputEmail1"]').should('contain','email')
+  
   });
 });

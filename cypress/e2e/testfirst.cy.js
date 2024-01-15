@@ -31,7 +31,7 @@ describe("Our First test suite", () => {
   
   });
 
-  it.only("invoke command ", () => {
+  it("invoke command ", () => {
     cy.visit("/");
     cy.contains(/forms/i).click(); // case insensitivity
     cy.contains("Form Layouts").click();
@@ -59,6 +59,23 @@ describe("Our First test suite", () => {
 
 
   });
+
+  it.only("web tables", () => {
+    cy.visit("/");
+    cy.contains(/forms/i).click(); // case insensitivity
+    cy.contains("Tables & Data").click();
+    cy.contains("Smart Table").click()
+
+    cy.get('tbody').contains('tr','Larry').then(tableROw => {
+
+      cy.wrap(tableROw).find('.nb-edit').click({ force:true })
+      cy.wrap(tableROw).find('[placeholder="Age"]').clear().type('25')
+      cy.wrap(tableROw).find('.nb-checkmark').click({ force:true })
+      cy.wrap(tableROw).find('td').eq(6).should('contain', '25')
+
+    })
+
+  })
 
   
 
